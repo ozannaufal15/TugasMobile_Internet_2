@@ -41,6 +41,7 @@ class OverviewViewModel : ViewModel() {
                 _status.value = ApiStatus.DONE
             } catch(e: Exception) {
                 _status.value = ApiStatus.ERROR
+                _articles.value = listOf()
             }
         }
     }
@@ -53,6 +54,7 @@ class OverviewViewModel : ViewModel() {
                 refreshLayout.isRefreshing = false
             } catch(e: Exception) {
                 _status.value = ApiStatus.ERROR
+                _articles.value = listOf()
                 refreshLayout.isRefreshing = false
             }
         }

@@ -25,34 +25,35 @@
             name="viewModel"
             type="com.example.android.tugasmobile.overview.OverviewViewModel" />
     </data>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/overview_refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.example.android.tugasmobile.overview.OverViewFragment">
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/photos_grid"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layoutManager=
-                "androidx.recyclerview.widget.GridLayoutManager"
-            app:listData="@{viewModel.articles}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:spanCount="1"
-            tools:itemCount="20"
-            tools:listitem="@layout/item_view"/>
-        <TextView
-            android:id="@+id/copyright_text"
+        app:onRefreshListener="@{()->viewModel.onRefresh(overviewRefreshLayout)}">
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:text="TODO"
-            />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_height="match_parent"
+            tools:context="com.example.android.tugasmobile.overview.OverViewFragment">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/photos_grid"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layoutManager=
+                    "androidx.recyclerview.widget.GridLayoutManager"
+                app:listData="@{viewModel.articles}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:spanCount="1"
+                tools:itemCount="20"
+                tools:listitem="@layout/item_view"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:id="@+id/status_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@{viewModel.status.name()}"
+            app:apiStatus="@{viewModel.status}" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </layout>

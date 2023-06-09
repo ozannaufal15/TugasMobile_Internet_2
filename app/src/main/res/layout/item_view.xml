@@ -43,38 +43,55 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:src="@tools:sample/backgrounds/scenic"
-        android:contentDescription="TODO" />
+        android:contentDescription="@{Article.media.get(0).caption}" />
     <TextView
         android:id="@+id/image_credit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@{Article.media.get(0).copyright}"
+        android:textAlignment="textEnd"
+        android:textSize="12sp"
         app:layout_constraintTop_toBottomOf="@id/mars_image"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="credit"/>
     <TextView
         android:id="@+id/article_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:text="@{Article.title}"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="20sp"
         app:layout_constraintTop_toBottomOf="@id/image_credit"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Title of Article"/>
     <TextView
         android:id="@+id/article_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@{Article.abstract}"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:layout_marginTop="5dp"
         app:layout_constraintTop_toBottomOf="@id/article_title"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Text description \nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque viverra lorem quis leo imperdiet efficitur. Aenean at justo facilisis, porttitor justo euismod, pretium eros. Morbi non bibendum nisi. Vivamus fringilla."/>
     <TextView
         android:id="@+id/article_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@{Article.publishedDate}"
+        android:layout_marginTop="10dp"
+        android:textSize="12sp"
         app:layout_constraintTop_toBottomOf="@id/article_description"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="25-06-2023"/>
     <com.google.android.material.divider.MaterialDivider
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:dividerColor="@color/black"
         app:layout_constraintTop_toBottomOf="@id/article_date"
         app:layout_constraintStart_toStartOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

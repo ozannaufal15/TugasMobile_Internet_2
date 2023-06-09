@@ -15,6 +15,7 @@ data class Article (
 @JsonClass(generateAdapter = true)
 data class Media (
     val type: String,
+    val caption: String,
     val copyright: String,
     @Json(name="media-metadata") val mediaMetaData: List<MediaMetaData>
     )

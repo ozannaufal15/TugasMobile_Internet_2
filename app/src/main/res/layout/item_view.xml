@@ -39,7 +39,7 @@
         android:scaleType="fitXY"
         android:adjustViewBounds="true"
         android:padding="2dp"
-        app:imageUrl="@{Article.media.get(0).mediaMetaData.get(2).imageUrl}"
+        app:imageUrl="@{Article.media.get(0).mediaMetaData.get(2)}"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:src="@tools:sample/backgrounds/scenic"

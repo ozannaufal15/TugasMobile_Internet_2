@@ -5,15 +5,20 @@ import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.bumptech.glide.Glide
 import com.example.android.tugasmobile.network.Article
+import com.example.android.tugasmobile.network.MediaMetaData
 import com.example.android.tugasmobile.overview.ItemGridAdapter
 
 @BindingAdapter("imageUrl")
-fun bindImage(imgView: ImageView, imgUrl: String?) {
+fun bindImage(imgView: ImageView, img: MediaMetaData?) {
     Log.d("cek bindImage1", "passsed")
-    imgUrl?.let {
+    img?.let {
         Log.d("cek bindImage2", "passsed")
-        imgView.load(imgUrl)
+//        imgView.load(img.ImageUrl)
+        Glide.with(imgView)
+            .load(img.ImageUrl).placeholder(R.drawable.loading_animation).error(R.drawable.ic_broken_image)
+            .into(imgView)
     }
 }
 

@@ -1,10 +1,13 @@
 package com.example.android.tugasmobile
 
+import android.content.Intent
+import android.net.Uri
 import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.android.tugasmobile.databinding.ItemViewBinding
 import com.example.android.tugasmobile.network.Article
 import com.example.android.tugasmobile.network.MediaMetaData
 import com.example.android.tugasmobile.overview.ApiStatus
@@ -24,6 +27,14 @@ fun bindRecyclerView(recyclerView: RecyclerView,
                      data: List<Article>?) {
     val adapter = recyclerView.adapter as ItemGridAdapter
     adapter.submitList(data)
+}
+
+@BindingAdapter("onClickItem")
+fun onClickItem(view: View, article: Article){
+    view.setOnClickListener {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(article.articleUrl))
+        view.context.startActivity(intent)
+    }
 }
 
 @BindingAdapter("apiStatus")

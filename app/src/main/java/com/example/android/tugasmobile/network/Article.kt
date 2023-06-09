@@ -8,6 +8,7 @@ data class Article (
     val id: String,
     val title: String,
     val abstract: String,
+    @Json(name = "url")val articleUrl: String,
     @Json(name = "published_date") val publishedDate: String,
     @Json(name="media") val media: List<Media>
     )

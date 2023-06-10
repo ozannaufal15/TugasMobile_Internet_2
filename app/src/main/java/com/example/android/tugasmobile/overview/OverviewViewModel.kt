@@ -37,7 +37,7 @@ class OverviewViewModel : ViewModel() {
         viewModelScope.launch {
             _status.value = ApiStatus.LOADING
             try {
-                _articles.value = NyTimesApi.retrofitService.getPopularArticles(API_KEY).result.shuffled()
+                _articles.value = NyTimesApi.retrofitService.getPopularArticles(API_KEY).result
                 _status.value = ApiStatus.DONE
             } catch(e: Exception) {
                 _status.value = ApiStatus.ERROR
@@ -49,7 +49,7 @@ class OverviewViewModel : ViewModel() {
     fun onRefresh(refreshLayout: SwipeRefreshLayout){
         viewModelScope.launch {
             try {
-                _articles.value = NyTimesApi.retrofitService.getPopularArticles(API_KEY).result.shuffled()
+                _articles.value = NyTimesApi.retrofitService.getPopularArticles(API_KEY).result
                 _status.value = ApiStatus.DONE
                 refreshLayout.isRefreshing = false
             } catch(e: Exception) {

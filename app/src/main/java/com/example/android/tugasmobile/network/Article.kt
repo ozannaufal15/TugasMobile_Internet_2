@@ -1,5 +1,6 @@
 package com.example.android.tugasmobile.network
 
+import androidx.annotation.Nullable
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 

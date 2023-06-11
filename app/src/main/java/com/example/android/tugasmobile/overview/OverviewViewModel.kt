@@ -1,5 +1,6 @@
 package com.example.android.tugasmobile.overview
 
+import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -46,17 +47,20 @@ class OverviewViewModel : ViewModel() {
         }
     }
 
-    fun onRefresh(refreshLayout: SwipeRefreshLayout){
+    private suspend fun refresh(): Boolean{
+        try {
+            _articles.value = NyTimesApi.retrofitService.getPopularArticles(API_KEY).result
+            _status.value = ApiStatus.DONE
+        } catch(e: Exception) {
+            _status.value = ApiStatus.ERROR
+            _articles.value = listOf()
+            return false
+        }
+        return false
+    }
+    fun onRefresh(view: SwipeRefreshLayout){
         viewModelScope.launch {
-            try {
-                _articles.value = NyTimesApi.retrofitService.getPopularArticles(API_KEY).result
-                _status.value = ApiStatus.DONE
-                refreshLayout.isRefreshing = false
-            } catch(e: Exception) {
-                _status.value = ApiStatus.ERROR
-                _articles.value = listOf()
-                refreshLayout.isRefreshing = false
-            }
+            view.isRefreshing = refresh()
         }
     }
 }
